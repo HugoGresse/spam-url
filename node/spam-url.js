@@ -6,7 +6,7 @@ const instance = axios.create({
     // headers: {'X-Custom-Header': 'foobar'}
 });
 
-const responses = { "call": 0, "timeout": 0 }
+const responses = { "call": 0 }
 
 const run = async (url) => {
     return new Promise(resolve => {
@@ -24,7 +24,7 @@ const run = async (url) => {
             })
             .catch( (error) =>  {
                 console.log(error)
-                const errorName = error.message || "error"
+                const errorName = `${error.code} ${error.message} error`
                 if (!responses[errorName]) {
                     responses[errorName] = 0
                 }
